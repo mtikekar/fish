@@ -1,10 +1,6 @@
 [ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
 
-remove_dot_from_path
-set -x PATH /homes/mtikekar/texlive/2013/bin/x86_64-linux $PATH
-
 echo -n (tput smkx) > /dev/tty
-
 set -x BROWSER firefox
 
 # git prompt options
@@ -28,10 +24,5 @@ set solarized_blue    268bd2
 set solarized_cyan    2aa198
 set solarized_green   859900
 
-# useful variables
-set wwwhome /u/www/htdocs/researchgroups/icsystems
-set tsmchome /u/tsmc/CLN45GS/TSMCHOME
-set bschome /homes/mtikekar/local/opt/Bluespec
-
-# prevent others from writing to terminal
-mesg no
+set hostname (hostname)
+[ (domainname) = mtl ]; and mtl_setup
