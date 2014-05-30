@@ -1,4 +1,4 @@
-eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
+[ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
 
 remove_dot_from_path
 set -x PATH /homes/mtikekar/texlive/2013/bin/x86_64-linux $PATH
@@ -6,21 +6,6 @@ set -x PATH /homes/mtikekar/texlive/2013/bin/x86_64-linux $PATH
 echo -n (tput smkx) > /dev/tty
 
 set -x BROWSER firefox
-
-if begin; expr $TERM : screen >/dev/null; and set -q TMUX; end
-    function --on-variable PWD __powerline_update_pwd
-        set -l tmux_id (tmux display -p "#D")
-        tmux setenv -g PWD_$tmux_id (prompt_pwd)
-
-        set prompt_git (__fish_git_prompt)
-        if [ $status != 0 ]; set prompt_git " "; end
-
-        tmux setenv -g GIT_$tmux_id $prompt_git
-        tmux refresh -S
-    end
-
-    __powerline_update_pwd
-end
 
 # git prompt options
 set __fish_git_prompt_showdirtystate 1
@@ -42,3 +27,11 @@ set solarized_violet  6c71c4
 set solarized_blue    268bd2
 set solarized_cyan    2aa198
 set solarized_green   859900
+
+# useful variables
+set wwwhome /u/www/htdocs/researchgroups/icsystems
+set tsmchome /u/tsmc/CLN45GS/TSMCHOME
+set bschome /homes/mtikekar/local/opt/Bluespec
+
+# prevent others from writing to terminal
+mesg no
