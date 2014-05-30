@@ -1,3 +1,3 @@
 function l
-    ls -l $argv
+    command ls -lh --color=auto $argv
 end
