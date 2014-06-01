@@ -1,6 +1,5 @@
 function fish_greeting
     begin
-        which fortune; and fortune ~/Downloads/fortune
+        type fortune >/dev/null; and fortune ~/Downloads/fortunes
     end ^/dev/null
 end
-
