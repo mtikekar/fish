@@ -1,6 +1,7 @@
+[ (domainname) = mtl ]; and mtl_setup
+
 [ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
 
-echo -n (tput smkx) > /dev/tty
 set -x BROWSER firefox
 
 # git prompt options
@@ -24,5 +25,18 @@ set solarized_blue    268bd2
 set solarized_cyan    2aa198
 set solarized_green   859900
 
-set hostname (hostname)
-[ (domainname) = mtl ]; and mtl_setup
+# fish setup
+
+function fish_greeting
+    fortune ~/Downloads/fortunes ^/dev/null
+end
+
+set fish_color_search_match --background=$solarized_base3
+set fish_color_command $solarized_green
+set fish_color_error $solarized_orange
+set fish_color_quote $solarized_cyan
+set fish_color_autosuggestion $solarized_base01
+set fish_color_comment $solarized_base0
+set fish_color_redirection $solarized_violet
+set fish_color_param $solarized_base1
+
