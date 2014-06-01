@@ -27,10 +27,6 @@ set solarized_green   859900
 
 # fish setup
 
-function fish_greeting
-    fortune ~/Downloads/fortunes ^/dev/null
-end
-
 set fish_color_search_match --background=$solarized_base3
 set fish_color_command $solarized_green
 set fish_color_error $solarized_orange

@@ -10,7 +10,7 @@ function fish_prompt --description 'Write out the prompt'
         tmux setenv -g GIT_$tmux_id $git
         tmux refresh -S
     else
-        printf "%s%s:%s%s%s%s" (set_color green) $hostname (set_color blue) $pwd (set_color yellow) $git
+        printf "%s%s:%s%s%s%s" (set_color green) $HOSTNAME (set_color blue) $pwd (set_color yellow) $git
     end
 
 	if [ $last_status = 0 ]
