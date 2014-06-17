@@ -2,7 +2,10 @@
 
 [ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
 
-set -x BROWSER firefox
+setenv BROWSER firefox
+setenv PAGER less
+setenv LESS -r
+setenv EDITOR vim
 
 # git prompt options
 set __fish_git_prompt_showdirtystate 1
