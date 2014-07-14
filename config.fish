@@ -7,6 +7,8 @@ setenv PAGER less
 setenv LESS -r
 setenv EDITOR vim
 
+set fish_greeting ''
+
 # git prompt options
 set __fish_git_prompt_showdirtystate 1
 

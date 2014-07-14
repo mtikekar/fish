@@ -1,9 +1,13 @@
 function tmux_update --description 'Update login session variables in shell'
-    setenv SESSION_MANAGER (tmux showenv SESSION_MANAGER)
-    setenv DBUS_SESSION_BUS_ADDRESS (tmux showenv DBUS_SESSION_BUS_ADDRESS)
-    setenv DISPLAY (tmux showenv DISPLAY)
-    setenv SESSION_MANAGER (tmux showenv SESSION_MANAGER)
-    setenv SSH_AUTH_SOCK (tmux showenv SSH_AUTH_SOCK)
-    setenv WINDOWID (tmux showenv WINDOWID)
-    setenv XAUTHORITY (tmux showenv XAUTHORITY)
+    function setv
+        eval (tmux showenv $argv[1] | perl -pe 's|(.*?)=(.*)|set -gx \1 \2|;' -pe 's|^-(.*)|set -e \1|;')
+    end
+
+    setv SESSION_MANAGER
+    setv DBUS_SESSION_BUS_ADDRESS
+    setv DISPLAY
+    setv SESSION_MANAGER
+    setv SSH_AUTH_SOCK
+    setv WINDOWID
+    setv XAUTHORITY
 end
