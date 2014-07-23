@@ -1,8 +1,8 @@
 function mtl_setup
-    remove_dot_from_path
+    setenv PATH (pop '.' $PATH)
 
     # setup MODULEPATH for environment modules
-    module use (find /u/cad/modulefiles -maxdepth 1 -type d)
+    module use (find /u/cad/modulefiles -mindepth 1 -maxdepth 1 -not -name '.*' -type d)
     module use /u/anantha/workspace3/share/programs/modulefiles
 
     # setup commonly used programs
