@@ -1,7 +1,5 @@
 function use
-    switch (count $argv)
-        case 0
-            set opt help
+	switch (count $argv)
         case 1
             switch $argv[1]
                 case --help --rm
@@ -54,4 +52,3 @@ function use
             module add $mod
     end
 end
-
