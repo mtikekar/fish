@@ -7,7 +7,7 @@ function mtlhome --description "Mount or unmount MTL home of sshfs"
     else
         echo "Attempting to mount MTL home"
         mkdir -p $mnt
-        sshfs -o idmap=user -C chitra.mit.edu:/homes/mtikekar $mnt
+        sshfs -o idmap=user -C wits.mit.edu:/homes/mtikekar $mnt
         [ $status = 0 ]; and echo "MTL home mounted at $mnt"
     end
 end
