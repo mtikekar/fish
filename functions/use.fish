@@ -1,4 +1,6 @@
 function use
+    set -l opt
+    set -l mod
 	switch (count $argv)
         case 1
             switch $argv[1]

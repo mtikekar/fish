@@ -2,7 +2,6 @@
 [ (hostname) = mtikekar-Satellite-U845 ]; and laptop_setup
 
 [ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
-[ -d ~/.local/bin ]; and setenv PATH ~/.local/bin $PATH
 
 setenv BROWSER firefox
 setenv PAGER less
