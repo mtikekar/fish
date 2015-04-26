@@ -20,15 +20,17 @@ function _ijulia --description "Start IJulia on wits"
 end
 
 function _home --description "Mount or unmount MTL home of sshfs"
-    set mnt $HOME/mtl
-    # attempt to unmount. if unsuccessful, then mount
-    fusermount -u $mnt ^/dev/null
-    if [ $status = 0 ]
-        echo "MTL home unmounted successfully from $mnt"
+    set mnt $HOME/.mtl
+    set src wits.mit.edu:/
+    # check if mounted
+    if df $mnt --output=source | grep -qF $src
+        fusermount -u $mnt
+        echo "MTL home unmounted from $mnt"
     else
         echo "Attempting to mount MTL home"
         mkdir -p $mnt
-        sshfs -o idmap=user -C wits.mit.edu:/homes/mtikekar $mnt
+        sshfs -o idmap=user,compression=yes,transform_symlinks $src $mnt
+
         [ $status = 0 ]; and echo "MTL home mounted at $mnt"
     end
 end
