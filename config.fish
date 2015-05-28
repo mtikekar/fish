@@ -1,5 +1,6 @@
 [ (domainname) = mtl ]; and mtl_setup
 [ (hostname) = mtikekar-Satellite-U845 ]; and laptop_setup
+[ (hostname) = mtikekar-XPS-13-9343 ]; and laptop_setup
 
 [ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
 
