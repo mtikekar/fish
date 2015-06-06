@@ -1,7 +1,9 @@
 function _help
-    echo "mtl ijulia [port]"
-    echo "mtl fs"
-    echo "mtl mosh"
+    echo "Usage:"
+    echo "  mtl ijulia [port]"
+    echo "  mtl fs"
+    echo "  mtl mosh"
+    echo "  mtl ssh"
 end
 
 function _ijulia --description "Start IJulia on wits"
@@ -41,21 +43,25 @@ function _fs --description "Mount or unmount MTL filesystem using sshfs"
 end
 
 function _mosh
-	mosh athena.dialup --server='athrun mosh_project mosh-server' ssh wits
+    mosh athena.dialup --ssh='ssh -C' --server='athrun mosh_project mosh-server' ssh wits
+end
+
+function _ssh
+    ssh -CX wits
 end
 
 function mtl --description "Connect to MTL via a variety of methods"
-    set argc (count $argv)
-    if [ $argc = 0 ]
-        _help
-    else
-        set fn $argv[1]
-        [ $argc = 1 ]; and set args ''; or set args $argv[2..-1]
-        switch $fn
-            case ijulia fs mosh
-                eval _$fn $args
-            case '*'
-                _help
-        end
+    set -l argc (count $argv)
+    set -l fn ''
+    set -l args ''
+    [ $argc -gt 0 ]; and set fn $argv[1]
+    [ $argc -gt 1 ]; and set args $argv[2..-1]
+
+
+    switch $fn
+        case ijulia fs mosh ssh
+            eval _$fn $args
+        case '*'
+            _help
     end
 end
