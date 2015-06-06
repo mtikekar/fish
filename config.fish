@@ -42,4 +42,4 @@ set fish_color_autosuggestion $solarized_base01
 set fish_color_comment $solarized_base0
 set fish_color_redirection $solarized_violet
 set fish_color_param $solarized_base1
-
+set fish_color_history_current $solarized_cyan
