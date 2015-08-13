@@ -1,7 +1,8 @@
 function _help
     echo "Usage:"
     echo "  mtl ijulia [port]"
-    echo "  mtl fs"
+    echo "  mtl mount"
+    echo "  mtl unmount"
     echo "  mtl mosh"
     echo "  mtl ssh"
 end
@@ -21,25 +22,29 @@ function _ijulia --description "Start IJulia on wits"
 	ssh -L $port:localhost:$port wits -t "use python; ipython notebook --profile=julia --no-browser --port=$port --port-retries=0"
 end
 
-function _fs --description "Mount or unmount MTL filesystem using sshfs"
-    set mnt $HOME/.mtl
-    set src apsara.mit.edu:/
+function _mount --description "Mount MTL filesystem using sshfs"
+    set -l mnt $HOME/.mtl
+    set -l src apsara.mit.edu:/
     # check if mounted
     if df $mnt --output=source | grep -qF $src
-        fusermount -u $mnt
-        echo "MTL fs unmounted"
-        [ -L $HOME/mtl ]; and rm $HOME/mtl
+        echo "Already mounted"
     else
         echo "Mounting MTL fs at $mnt"
         mkdir -p $mnt
-        sshfs -o idmap=user,compression=yes,transform_symlinks $src $mnt
+        sshfs -o reconnect,idmap=user,compression=yes,transform_symlinks $src $mnt
 
         [ $status = 0 ]; and begin
             echo "Mount successful"
-            ln -s $HOME/.mtl/homes/mtikekar $HOME/mtl
+            ln -sT $HOME/.mtl/homes/mtikekar $HOME/mtl
             echo "MTL home linked to $HOME/mtl"
         end
     end
+end
+
+function _unmount --description "Unmount MTL filesystem"
+    set -l mnt $HOME/.mtl
+    fusermount -u $mnt
+    [ -L $HOME/mtl ]; and rm $HOME/mtl
 end
 
 function _mosh
@@ -59,7 +64,7 @@ function mtl --description "Connect to MTL via a variety of methods"
 
 
     switch $fn
-        case ijulia fs mosh ssh
+        case ijulia mount unmount mosh ssh
             eval _$fn $args
         case '*'
             _help
