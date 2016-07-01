@@ -4,6 +4,8 @@
 
 [ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
 
+set -q HOSTNAME; or setenv HOSTNAME (hostname)
+
 setenv BROWSER firefox
 setenv PAGER less
 setenv LESS -r

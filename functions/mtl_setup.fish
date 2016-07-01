@@ -9,7 +9,7 @@ function mtl_setup
     use use.own
     use python
     use vim
-    use Bluespec
+    use Bluespec 2014.07.A
 
     # useful variables
     set -g wwwhome /u/www/htdocs/researchgroups/icsystems
