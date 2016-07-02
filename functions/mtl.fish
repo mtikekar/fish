@@ -11,9 +11,9 @@ end
 function _notebook --description "Start Jupyter notebook on wits"
     switch (count $argv)
         case 0
-            set port 8888
+            set -l port 8888
         case 1
-            set port $argv[1]
+            set -l port $argv[1]
         case '*'
             echo "Wrong number of arguments. Run notebook or notebook <port>."
             return -1
