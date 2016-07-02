@@ -1,8 +1,10 @@
 function laptop_setup
     set -gx HOSTNAME (hostname)
-    set -l opt /home/mtikekar/.local/opt
-    for p in ~/.local/bin ~/.cabal/bin $opt/anaconda/bin $opt/texlive/2013/bin/x86_64-linux $opt/dart $opt/energia/0101E0014 begin
-        [ -d $p ]; and set -gx PATH $p $PATH
-    end
+    prepend_path ~/.local
+    prepend_path ~/.local/opt/miniconda
 end
 
+function prepend_path
+    [ -d $argv/bin ]; and set -gx PATH $argv/bin $PATH
+    [ -d $argv/share/man ]; and set -gx MANPATH $argv/share/man $MANPATH
+end

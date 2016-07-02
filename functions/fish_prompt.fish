@@ -3,6 +3,8 @@ function fish_prompt --description 'Write out the prompt'
 
     if set -q TMUX
         tmux refresh -S
+    else if df -T . -t fuse.sshfs > /dev/null 2> /dev/null
+        printf "%s%s:%s%s" (set_color green) $HOSTNAME (set_color blue) (prompt_pwd)
     else
         printf "%s%s:%s%s%s %s" (set_color green) $HOSTNAME (set_color blue) (prompt_pwd) (set_color yellow) (__fish_git_prompt '(%s)')
     end
