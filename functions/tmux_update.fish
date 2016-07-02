@@ -1,13 +1,11 @@
 function tmux_update --description 'Update login session variables in shell'
-    function setv
-        eval (tmux showenv $argv[1] | perl -pe 's|(.*?)=(.*)|set -gx \1 \2|;' -pe 's|^-(.*)|set -e \1|;')
+    # tmux showenv prints -VAR for removed variables and VAR=value for set variables
+    for v in (tmux showenv)
+        set var (string match -r '^-(.*)' -- $v)
+        if [ $status -eq 0 ]
+            set -ge $var[2]
+        else
+            export $v
+        end
     end
-
-    setv SESSION_MANAGER
-    setv DBUS_SESSION_BUS_ADDRESS
-    setv DISPLAY
-    setv SESSION_MANAGER
-    setv SSH_AUTH_SOCK
-    setv WINDOWID
-    setv XAUTHORITY
 end

@@ -2,14 +2,16 @@
 [ (hostname) = mtikekar-Satellite-U845 ]; and laptop_setup
 [ (hostname) = mtikekar-XPS-13-9343 ]; and laptop_setup
 
-[ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
+[ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors)
 
-set -q HOSTNAME; or setenv HOSTNAME (hostname)
+set -gq HOSTNAME; or set -gx HOSTNAME (hostname)
 
-setenv BROWSER firefox
-setenv PAGER less
-setenv LESS -r
-setenv EDITOR vim
+set -gx BROWSER firefox
+set -gx PAGER less
+set -gx LESS -r
+
+set -gx EDITOR vim
+set -gx VISUAL vim
 
 set fish_greeting ''
 

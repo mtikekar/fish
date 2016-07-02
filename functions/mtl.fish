@@ -27,7 +27,7 @@ function _mount --description "Mount MTL filesystem using sshfs"
     set -l mnt $HOME/.mtl
     set -l src wits.mit.edu:/
     # check if mounted
-    if df $mnt --output=source | grep -qF $src
+    if string match -qr "^$src" (df $mnt --output=source)
         echo "Already mounted"
     else
         echo "Mounting MTL fs at $mnt"

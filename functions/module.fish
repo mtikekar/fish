@@ -1,4 +1,4 @@
 function module
-    eval (modulecmd tcsh $argv | tr ':' ' ')
+    eval (modulecmd tcsh $argv)
 end
 

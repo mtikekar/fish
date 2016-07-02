@@ -1,5 +1,5 @@
 function mtl_setup
-    setenv PATH (pop '.' $PATH)
+    pop PATH '.'
 
     # setup MODULEPATH for environment modules
     module use (find /u/cad/modulefiles -mindepth 1 -maxdepth 1 -not -name '.*' -type d)
