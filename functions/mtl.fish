@@ -36,8 +36,10 @@ function _mount --description "Mount MTL filesystem using sshfs"
 
         [ $status = 0 ]; and begin
             echo "Mount successful"
-            ln -sT $HOME/.mtl/homes/mtikekar $HOME/mtl
-            echo "MTL home linked to $HOME/mtl"
+            [ -L $HOME/mtl ]; or begin
+                ln -sT $HOME/.mtl/homes/mtikekar $HOME/mtl
+                echo "MTL home linked to $HOME/mtl"
+            end
         end
     end
 end
