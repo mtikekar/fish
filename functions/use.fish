@@ -1,7 +1,7 @@
 function use
     set -l opt
     set -l mod
-	switch (count $argv)
+    switch (count $argv)
         case 1
             switch $argv[1]
                 case --help --rm

@@ -1,8 +1,10 @@
-function setenv
-    switch $argv[1]
-        case PATH MANPATH CDPATH
-            set -gx $argv[1] (string split : $argv[2])
-        case '*'
-            set -gx $argv[1] $argv[2]
+function setenv --description 'handle csh setenv commands for module function'
+    set -l var $argv[1]
+    set -l val $argv[2..-1]
+    if begin contains -- $var PATH MANPATH CDPATH; and [ (count $val) -eq 1 ]; end
+        set -gx $var (string split : $val)
+    else
+        set -gx $var $val
     end
+    return 0
 end
