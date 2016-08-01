@@ -12,6 +12,7 @@ set -gx LESS -r
 
 set -gx EDITOR vim
 set -gx VISUAL vim
+contains $__fish_bin_dir $PATH; or set PATH $__fish_bin_dir $PATH
 
 set fish_greeting ''
 
