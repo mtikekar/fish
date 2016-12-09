@@ -11,7 +11,7 @@ function mtl_setup
     use python
     use python3
     use editerm
-    use Bluespec 2014.07.A
+    use bluespec 2014.07.A
 
     # useful variables
     set -g wwwhome /u/www/htdocs/researchgroups/icsystems
