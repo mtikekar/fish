@@ -24,30 +24,29 @@ function _notebook --description "Start Jupyter notebook on wits"
 end
 
 function _mount --description "Mount MTL filesystem using sshfs"
-    set -l mnt $HOME/.mtl
+    set -l mnt ~/.mtl
     set -l src wits.mit.edu:/
     # check if mounted
-    if string match -qr "^$src" (df $mnt --output=source)
+    if findmnt $mnt >/dev/null ^&1
         echo "Already mounted"
     else
         echo "Mounting MTL fs at $mnt"
         mkdir -p $mnt
-        sshfs -o reconnect,idmap=user,compression=yes,transform_symlinks $src $mnt
+        sshfs -o reconnect,idmap=user,transform_symlinks $src $mnt
 
         [ $status = 0 ]; and begin
             echo "Mount successful"
-            [ -L $HOME/mtl ]; or begin
-                ln -sT $HOME/.mtl/homes/mtikekar $HOME/mtl
-                echo "MTL home linked to $HOME/mtl"
+            [ -L ~/mtl ]; or begin
+                ln -sT ~/.mtl/homes/mtikekar ~/mtl
+                echo "MTL home linked to ~/mtl"
             end
         end
     end
 end
 
 function _unmount --description "Unmount MTL filesystem"
-    set -l mnt $HOME/.mtl
-    fusermount -u $mnt
-    [ -L $HOME/mtl ]; and rm $HOME/mtl
+    set -l mnt ~/.mtl
+    fusermount -u $mnt; and [ -L ~/mtl ]; and rm ~/mtl
 end
 
 function _mosh
