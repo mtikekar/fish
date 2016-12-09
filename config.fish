@@ -10,11 +10,12 @@ set -gx BROWSER firefox
 set -gx PAGER less
 set -gx LESS -r
 
-set -gx EDITOR vim
-set -gx VISUAL vim
+set -gx EDITOR vi
+set -gx VISUAL vi
 contains $__fish_bin_dir $PATH; or set PATH $__fish_bin_dir $PATH
 
 set fish_greeting ''
+fish_vi_key_bindings
 
 # git prompt options
 set __fish_git_prompt_showdirtystate 1
