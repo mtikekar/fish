@@ -4,7 +4,7 @@ function mtl_setup
     # setup MODULEPATH for environment modules
     module use /usr/share/Modules/modulefiles
     module use /u/anantha/workspace3/share/programs/modulefiles
-    module use (find /u/cad/modulefiles -mindepth 1 -maxdepth 1 -not -name '.*' -type d)
+    module use (string trim -r -c / /u/cad/modulefiles/*/)
 
     # setup commonly used programs
     use use.own
