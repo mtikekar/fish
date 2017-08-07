@@ -1,7 +1,7 @@
 function _help
     echo "Usage:"
     echo "  mtl notebook [port]"
-    echo "  mtl mount"
+    echo "  mtl mount [sshfs_opts]"
     echo "  mtl unmount"
     echo "  mtl mosh"
     echo "  mtl ssh"
@@ -9,18 +9,11 @@ function _help
 end
 
 function _notebook --description "Start Jupyter notebook on wits"
-    switch (count $argv)
-        case 0
-            set -l port 8888
-        case 1
-            set -l port $argv[1]
-        case '*'
-            echo "Wrong number of arguments. Run notebook or notebook <port>."
-            return -1
-    end
+    set argv $argv 8888
+    set port $argv[1]
 
+	ssh -f -L $port:localhost:$port wits "module use ~/share/programs/modulefiles; use python; jupyter notebook --no-browser --port=$port --port-retries=0"
 	open http://127.0.0.1:$port
-	ssh -L $port:localhost:$port wits -n "nohup ipython notebook --no-browser --port=$port --port-retries=0; sleep 10"
 end
 
 function _mount --description "Mount MTL filesystem using sshfs"
@@ -32,7 +25,8 @@ function _mount --description "Mount MTL filesystem using sshfs"
     else
         echo "Mounting MTL fs at $mnt"
         mkdir -p $mnt
-        sshfs -o reconnect,idmap=user,transform_symlinks $src $mnt
+        set -l opts reconnect idmap=user transform_symlinks $argv
+        sshfs -o (string join , $opts) $src $mnt
 
         [ $status = 0 ]; and begin
             echo "Mount successful"
@@ -58,7 +52,7 @@ function _ssh
 end
 
 function _x11vnc
-    ssh -tCL 5900:localhost:5900 wits '~/share/programs/x11vnc/bin/x11vnc -xrandr -localhost -display :0'
+    env VNC_VIA_CMD='/usr/bin/ssh -f -o ExitOnForwardFailure=yes -L "$L":"$H":"$R" "$G" "~/share/programs/x11vnc/bin/x11vnc -xrandr -localhost -display :0 -quiet -nopw" && sleep 2' vncviewer -via wits :0
 end
 
 function mtl --description "Connect to MTL via a variety of methods"
