@@ -7,5 +7,5 @@ function hcd --description 'List dir history and change. Usage: hcd -> input # o
         read -p 'echo "select a number: "' n
     end
 
-    cd $dirs[$n]
+    [ $n ]; and cd $dirs[$n]
 end
