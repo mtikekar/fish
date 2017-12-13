@@ -33,6 +33,10 @@ function conda -w conda
         pop PATH $CONDA_PREFIX/bin
         set -e CONDA_PREFIX
         set -e CONDA_DEFAULT_ENV
+    case kernel
+        set -e argv[1]
+        python -m ipykernel install $argv
+        # Recommended options: --user --name <name> --display-name <display name>
     case '*'
         command conda $argv
     end
