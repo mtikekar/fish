@@ -1,5 +1,6 @@
 function fish_prompt --description 'Write out the prompt'
 	set -l last_status $status
+    set -q CONDA_DEFAULT_ENV; and printf "(%s) " $CONDA_DEFAULT_ENV
 
     if set -q TMUX
         tmux refresh -S
