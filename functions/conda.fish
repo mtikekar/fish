@@ -26,7 +26,7 @@ function conda -w conda
         set PATH $env_path/bin $PATH
     case deactivate
         test -n "$CONDA_PREFIX"; or begin
-            echo "No conda env currently set"
+            echo "No conda env currently set" 1>&2
             return 1
         end
 
