@@ -10,7 +10,6 @@ function mtl_setup
     use use.own
     use python
     use python3
-    use editerm
     use bluespec 2014.07.A
 
     # useful variables

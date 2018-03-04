@@ -1,6 +1,6 @@
 function laptop_setup
     module use /usr/share/modules/modulefiles
     use use.own
-    use editerm
+    use miniconda3
     alias open xdg-open
 end

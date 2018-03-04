@@ -4,6 +4,5 @@ function mac_setup
     module add gnucoreutils
     module add dotlocal
     module add python
-    module add editerm
     module add miniconda3
 end
