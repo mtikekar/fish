@@ -6,6 +6,12 @@
 
 [ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors)
 
+# add editerm wrappers to path if running inside neovim terminal
+set -l editermdir (readlink -e ~/src/editerm/bin/wrapper)
+and set -gq NVIM_LISTEN_ADDRESS
+and not contains $editermdir $PATH
+and set PATH $editermdir $PATH
+
 set -gq HOSTNAME; or set -gx HOSTNAME (hostname)
 
 set -gx BROWSER firefox
