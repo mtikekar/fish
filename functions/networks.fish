@@ -1,5 +1,5 @@
 function networks
-    set -l order (networksetup -listnetworkserviceorder | grep -oP '(?<=^\(\d\) ).*')
+    set -l order (networksetup -listnetworkserviceorder | grep -oP '^\(\d+\) \K.*')
     if [ (count $argv) -eq 0 ]
         printf '%s\n' $order
         return
