@@ -1,5 +1,5 @@
 function fish_prompt --description 'Write out the prompt'
-	set -l last_status $status
+    set -l last_status $status
     set -q CONDA_DEFAULT_ENV; and printf "(%s) " $CONDA_DEFAULT_ENV
 
     if set -q TMUX
@@ -10,7 +10,7 @@ function fish_prompt --description 'Write out the prompt'
         printf "%s%s:%s%s%s %s" (set_color green) $HOSTNAME (set_color blue) (prompt_pwd) (set_color yellow) (__fish_git_prompt '(%s)')
     end
 
-	if [ $last_status = 0 ]
+    if [ $last_status = 0 ]
         printf '%s$ ' (set_color normal)
     else
         printf '%s$%s ' (set_color red) (set_color normal)

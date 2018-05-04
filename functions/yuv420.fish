@@ -1,5 +1,5 @@
 function yuv420
-	set -l fname (basename $argv)
+    set -l fname (basename $argv)
     set -l size (string match -r 'qcif|cif|720p|1080p|2160p|\d+x\d+' $fname)
     switch $size
         case qcif

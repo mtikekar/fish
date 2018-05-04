@@ -12,8 +12,8 @@ function _notebook --description "Start Jupyter notebook on wits"
     set argv $argv 8888
     set port $argv[1]
 
-	ssh -f -L $port:localhost:$port wits "module use ~/share/programs/modulefiles; use python; jupyter notebook --no-browser --port=$port --port-retries=0"
-	open http://127.0.0.1:$port
+    ssh -f -L $port:localhost:$port wits "module use ~/share/programs/modulefiles; use python; jupyter notebook --no-browser --port=$port --port-retries=0"
+    open http://127.0.0.1:$port
 end
 
 function _mount --description "Mount MTL filesystem using sshfs"
