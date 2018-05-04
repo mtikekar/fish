@@ -1,4 +1,4 @@
-function mac_setup
+function local_setup
     source ~/.local/opt/modules/4.1.0/init/fish
     module add use.own
     module add gnucoreutils

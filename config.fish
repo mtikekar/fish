@@ -1,8 +1,4 @@
-[ (domainname) = mtl ]; and mtl_setup
-[ (hostname) = mtikekar-Satellite-U845 ]; and laptop_setup
-[ (hostname) = mtikekar-XPS-13-9343 ]; and laptop_setup
-[ (uname) = Darwin ]; and mac_setup
-[ (domainname) = ads ]; and ads_setup
+type -q local_setup; and local_setup
 
 [ -f ~/.dircolors ]; and eval (dircolors -c ~/.dircolors)
 

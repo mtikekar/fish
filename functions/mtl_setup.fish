@@ -1,4 +1,4 @@
-function mtl_setup
+function local_setup
     pop PATH '.'
 
     # setup MODULEPATH for environment modules

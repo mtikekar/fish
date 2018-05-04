@@ -16,7 +16,7 @@ exec commands
 " $argv
 end
 
-function ads_setup
+function local_setup
     function module
         for v in (_module_py $argv)
             eval $v
