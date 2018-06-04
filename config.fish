@@ -8,7 +8,7 @@ and set -gq NVIM_LISTEN_ADDRESS
 and not contains $editermdir $PATH
 and set PATH $editermdir $PATH
 
-set -gq HOSTNAME; or set -gx HOSTNAME (hostname)
+set _prompt_hostname (hostname -s)
 
 set -gx BROWSER firefox
 set -gx PAGER less
