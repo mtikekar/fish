@@ -27,4 +27,5 @@ function local_setup
             eval $v
         end
     end
+    set -gq NVIM_LISTEN_ADDRESS; and module add editerm_wrapper
 end
