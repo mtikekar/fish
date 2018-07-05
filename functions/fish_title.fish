@@ -1,6 +1,5 @@
 function fish_title
-    echo $_'@'
-    hostname
+    echo $_
     echo :
-    pwd | string replace $HOME '~'
+    prompt_pwd
 end
