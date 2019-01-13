@@ -5,4 +5,5 @@ function local_setup
     module add dotlocal
     module add python
     module add miniconda3
+    set -gx AWS_SDK_LOAD_CONFIG 1
 end
