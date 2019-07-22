@@ -1,4 +1,4 @@
-function _module_py
+function module
     /usr/bin/python -c "
 import os, subprocess, sys
 
@@ -16,18 +16,15 @@ sys.stdout = stdout
 
 for k, v in os.environ.iteritems():
     if v != oldenv.get(k):
-        print 'setenv %s \"%s\";' % (k, v)
+        print 'set -gx %s \"%s\";' % (k, v)
 
 for k in oldenv:
     if k not in os.environ:
-        print 'set -e %s;' % k
-" $argv
+        print 'set -ge %s;' % k
+" $argv | source
 end
 
 function local_setup
-    function module
-        eval (_module_py $argv)
-    end
     set -gq NVIM_LISTEN_ADDRESS; and module add editerm_wrapper
     alias open xdg-open
 end
