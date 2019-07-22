@@ -5,8 +5,10 @@ type -q local_setup; and local_setup
 # add editerm wrappers to path if running inside neovim terminal
 set -l editermdir (readlink -e ~/src/editerm/bin/wrapper)
 and set -gq NVIM_LISTEN_ADDRESS
-and not contains $editermdir $PATH
-and set PATH $editermdir $PATH
+and begin
+    pop PATH $editermdir
+    set PATH $editermdir $PATH
+end
 
 set _prompt_hostname (hostname -s)
 
@@ -14,7 +16,7 @@ set -gx BROWSER firefox
 set -gx PAGER less
 set -gx LESS -r
 
-contains $__fish_bin_dir $PATH; or set PATH $__fish_bin_dir $PATH
+command --search --quiet fish; or set PATH $__fish_bin_dir $PATH
 
 set fish_greeting ''
 fish_vi_key_bindings
